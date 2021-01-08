@@ -1,0 +1,43 @@
+
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    # 重定向 pc 的资源目录路径
+    RewriteCond %{HTTP_HOST} ^www\.666test\.com$
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ pc/$1
+
+    # 重定向 pc 的入口文件
+    RewriteCond %{HTTP_HOST} ^www\.6666test\.com$
+    RewriteCond %{REQUEST_URI} ^/$
+    RewriteRule ^(.*)$ pc.php [L]
+
+    # 重定向 pc 带参数的处理
+    RewriteCond %{HTTP_HOST} ^www\.6666test\.com$
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ pc.php?/$1 [L]
+
+    # 重定向 mobile 的资源目录路径
+    RewriteCond %{HTTP_HOST} ^m\.6666test\.com$
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ m/$1
+
+    # 重定向 mobile 的入口文件
+    RewriteCond %{HTTP_HOST} ^m\.6666test\.com$
+    RewriteCond %{REQUEST_URI} ^/$
+    RewriteRule ^(.*)$ mobile.php [L]
+
+    # 重定向 mobile 带参数的处理
+    RewriteCond %{HTTP_HOST} ^m\.6666test\.com$
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ mobile.php?/$1
+
+</IfModule>
